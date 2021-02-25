@@ -1,5 +1,6 @@
 package com.zcbiner.awesomeopengl
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,9 +10,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.zcbiner.awesomeopengl.gl.GLShowActivity
 import kotlinx.android.synthetic.main.content_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     companion object {
         val DEMO_TEXT: Array<String> = arrayOf(
@@ -46,6 +48,8 @@ class MainActivity : AppCompatActivity() {
         override fun getItemCount(): Int = DEMO_TEXT.size
 
         override fun onBindViewHolder(holder: RvViewHolder, position: Int) {
+            holder.itemView.tag = position
+            holder.itemView.setOnClickListener(this@MainActivity)
             holder.tvContent.text = DEMO_TEXT[position]
         }
 
@@ -53,5 +57,13 @@ class MainActivity : AppCompatActivity() {
 
     inner class RvViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvContent: TextView = itemView.findViewById(R.id.tvContent)
+    }
+
+    override fun onClick(v: View) {
+        when(v.tag) {
+            0 -> {
+                startActivity(Intent(this@MainActivity, GLShowActivity::class.java))
+            }
+        }
     }
 }
