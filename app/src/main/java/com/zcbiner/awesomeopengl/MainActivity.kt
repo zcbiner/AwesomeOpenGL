@@ -60,10 +60,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View) {
+        val intent = Intent(this@MainActivity, GLShowActivity::class.java)
+        var renderKey: String? = null
         when(v.tag) {
             0 -> {
-                startActivity(Intent(this@MainActivity, GLShowActivity::class.java))
+                renderKey = GLShowActivity.RENDER_GEOMETRY
             }
         }
+        if (renderKey.isNullOrEmpty()) {
+            return
+        }
+        intent.putExtra(GLShowActivity.KEY_RENDER, renderKey)
+        startActivity(intent)
     }
 }
