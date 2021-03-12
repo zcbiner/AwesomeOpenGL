@@ -44,4 +44,13 @@ class GLShowActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        glView.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        glView.onPause()
+    }
 }

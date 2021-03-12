@@ -18,6 +18,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     companion object {
         val DEMO_TEXT: Array<String> = arrayOf(
             "简单几何图形",
+            "绘制纹理",
+            "理解坐标变换",
             "高斯模糊",
             "水波纹效果",
             "粒子效果",

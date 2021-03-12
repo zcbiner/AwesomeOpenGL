@@ -1,2 +1,3 @@
+include ':gles-ndk'
 include ':app'
 rootProject.name = "AwesomeOpenGL"
