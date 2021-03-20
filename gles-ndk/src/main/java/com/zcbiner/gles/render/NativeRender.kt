@@ -1,4 +1,4 @@
-package com.zcbiner.glsl.render
+package com.zcbiner.gles.render
 
 import android.opengl.GLSurfaceView
 import javax.microedition.khronos.egl.EGLConfig

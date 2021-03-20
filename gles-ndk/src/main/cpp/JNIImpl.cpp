@@ -7,7 +7,7 @@ extern "C" {
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_zcbiner_awesomeopengl_gl_render_NativeRender_nativeInit(JNIEnv
+Java_com_zcbiner_gles_render_NativeRender_nativeInit(JNIEnv
 * env,
 jobject thiz, jint type
 ) {
@@ -16,7 +16,7 @@ jobject thiz, jint type
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_zcbiner_awesomeopengl_gl_render_NativeRender_nativeOnSurfaceCreated(JNIEnv
+Java_com_zcbiner_gles_render_NativeRender_nativeOnSurfaceCreated(JNIEnv
 * env,
 jobject thiz
 ) {
@@ -26,7 +26,7 @@ jobject thiz
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_zcbiner_awesomeopengl_gl_render_NativeRender_nativeOnSurfaceChanged(JNIEnv
+Java_com_zcbiner_gles_render_NativeRender_nativeOnSurfaceChanged(JNIEnv
 * env,
 jobject thiz, jint
 width,
@@ -37,7 +37,7 @@ jint height
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_zcbiner_awesomeopengl_gl_render_NativeRender_nativeOnDrawFrame(JNIEnv
+Java_com_zcbiner_gles_render_NativeRender_nativeOnDrawFrame(JNIEnv
 * env,
 jobject thiz
 ) {
@@ -46,7 +46,7 @@ jobject thiz
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_zcbiner_awesomeopengl_gl_render_NativeRender_nativeUnInit(JNIEnv
+Java_com_zcbiner_gles_render_NativeRender_nativeUnInit(JNIEnv
 * env,
 jobject thiz
 ) {
