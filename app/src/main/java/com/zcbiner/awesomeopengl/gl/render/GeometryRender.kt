@@ -13,7 +13,7 @@ import javax.microedition.khronos.opengles.GL10
 /**
  * 用于绘制简单的几何图形。
  */
-class GeometryRender(private val context: Context): GLSurfaceView.Renderer {
+class GeometryRender(private val context: Context): BaseRender() {
 
     companion object {
         // 每一次取点的时候取几个点。
@@ -41,11 +41,8 @@ class GeometryRender(private val context: Context): GLSurfaceView.Renderer {
     private var positionHandle: Int = 0
     private var colorHandle: Int = 0
 
-    override fun onSurfaceChanged(gl: GL10?, width: Int, height: Int) {
-        GLES20.glViewport(0, 0, width, height)
-    }
-
     override fun onSurfaceCreated(gl: GL10?, config: EGLConfig?) {
+        super.onSurfaceCreated(gl, config)
         vertexBuffer = ByteBuffer.allocateDirect(TRIANGLE_COORDS.size * 4)
             .order(ByteOrder.nativeOrder())
             .asFloatBuffer()
@@ -60,13 +57,10 @@ class GeometryRender(private val context: Context): GLSurfaceView.Renderer {
             positionHandle = GLES20.glGetAttribLocation(program, "vPosition")
             colorHandle = GLES20.glGetUniformLocation(program, "vColor")
         }
-        // 将整个背景设为白色。
-        GLES20.glClearColor(1.0f, 1.0f, 1.0f, 1.0f)
     }
 
     override fun onDrawFrame(gl: GL10?) {
-        // 清除深度缓冲与颜色缓冲
-        GLES20.glClear(GLES20.GL_DEPTH_BUFFER_BIT or GLES20.GL_COLOR_BUFFER_BIT)
+        super.onDrawFrame(gl)
         // 使用渲染程序
         GLES20.glUseProgram(program)
         // 使顶点属性数组有效
