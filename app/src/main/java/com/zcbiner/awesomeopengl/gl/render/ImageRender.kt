@@ -15,7 +15,7 @@ import javax.microedition.khronos.opengles.GL10
 /**
  * 用于展示一张图片。在OpenGL中，图片称为纹理。
  */
-class ImageRender(private val context: Context): BaseRender() {
+class ImageRender(context: Context): BaseRender(context) {
 
     companion object {
         private const val TEXTURE_COORDINATE_COMPONENT_COUNT = 2

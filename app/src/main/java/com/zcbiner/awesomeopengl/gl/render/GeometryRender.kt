@@ -13,7 +13,7 @@ import javax.microedition.khronos.opengles.GL10
 /**
  * 用于绘制简单的几何图形。
  */
-class GeometryRender(private val context: Context): BaseRender() {
+class GeometryRender(context: Context): BaseRender(context) {
 
     companion object {
         // 每一次取点的时候取几个点。

@@ -11,21 +11,10 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.zcbiner.awesomeopengl.gl.GLShowActivity
+import com.zcbiner.awesomeopengl.gl.util.RenderConfig
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
-
-    companion object {
-        val DEMO_TEXT: Array<String> = arrayOf(
-            "简单几何图形",
-            "绘制纹理",
-            "理解坐标变换",
-            "高斯模糊",
-            "水波纹效果",
-            "粒子效果",
-            "3D模型效果"
-        )
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,12 +36,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             return RvViewHolder(itemView)
         }
 
-        override fun getItemCount(): Int = DEMO_TEXT.size
+        override fun getItemCount(): Int = RenderConfig.TITLE_CONFIG.size
 
         override fun onBindViewHolder(holder: RvViewHolder, position: Int) {
             holder.itemView.tag = position
             holder.itemView.setOnClickListener(this@MainActivity)
-            holder.tvContent.text = DEMO_TEXT[position]
+            holder.tvContent.text = RenderConfig.TITLE_CONFIG[position]
         }
 
     }
@@ -63,19 +52,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View) {
         val intent = Intent(this@MainActivity, GLShowActivity::class.java)
-        var renderKey: String? = null
-        when(v.tag) {
-            0 -> {
-                renderKey = GLShowActivity.RENDER_GEOMETRY
-            }
-            1 -> {
-                renderKey = GLShowActivity.RENDER_TEXTURE
-            }
+        if (v.tag is Int) {
+            intent.putExtra(GLShowActivity.KEY_POS, v.tag as Int)
         }
-        if (renderKey.isNullOrEmpty()) {
-            return
-        }
-        intent.putExtra(GLShowActivity.KEY_RENDER, renderKey)
         startActivity(intent)
     }
 }

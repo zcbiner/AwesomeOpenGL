@@ -2,51 +2,60 @@ package com.zcbiner.awesomeopengl.gl
 
 import android.opengl.GLSurfaceView
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.zcbiner.awesomeopengl.R
-import com.zcbiner.awesomeopengl.gl.render.GeometryRender
-import com.zcbiner.awesomeopengl.gl.render.ImageRender
+import com.zcbiner.awesomeopengl.gl.render.BaseRender
+import com.zcbiner.awesomeopengl.gl.util.RenderConfig
 import kotlinx.android.synthetic.main.activity_gl_show.*
 
 class GLShowActivity : AppCompatActivity() {
 
     companion object {
-        const val KEY_RENDER = "key_render"
-
-        const val RENDER_GEOMETRY = "geometry"
-        const val RENDER_TEXTURE = "texture"
+        const val TAG = "GLShowActivity"
+        const val KEY_POS = "key_pos"
     }
+
+    private var renderPos = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gl_show)
+        initParams()
         initGLView()
     }
 
-    private fun initGLView() {
-        glView.setEGLContextClientVersion(2)
+    private fun initParams() {
+        renderPos = intent?.getIntExtra(KEY_POS, -1) ?: -1
+    }
 
-        val renderKey = intent?.getStringExtra(KEY_RENDER)
-        if (renderKey.isNullOrEmpty()) {
+    private fun initGLView() {
+        if (renderPos < 0 || RenderConfig.RENDER_CONFIG.size <= renderPos) {
+            Toast.makeText(this@GLShowActivity, "暂未实现，敬请期待！",
+                Toast.LENGTH_SHORT).show()
+            Log.e(TAG, "renderPos is illegal, renderPos=$renderPos")
+            finish()
             return
         }
-
-        setGLRender(renderKey)
+        val render = createGLRender()
+        glView.setEGLContextClientVersion(2)
+        glView.setRenderer(render)
 
         // 设置GLSurfaceView的渲染模式为GLSurfaceView.RENDERMODE_CONTINUOUSLY或不设置时，系统就会主动回调onDrawFrame()方法.
         // 如果设置为 RENDERMODE_WHEN_DIRTY ，手动调用requestRender()，才会渲染。
         glView.renderMode = GLSurfaceView.RENDERMODE_WHEN_DIRTY
     }
 
-    private fun setGLRender(renderKey: String) {
-        when(renderKey) {
-            RENDER_GEOMETRY -> {
-                glView.setRenderer(GeometryRender(this@GLShowActivity))
-            }
-            RENDER_TEXTURE -> {
-                glView.setRenderer(ImageRender(this@GLShowActivity))
+    private fun createGLRender(): BaseRender? {
+        var baseRender: BaseRender? = null
+        val clazz = RenderConfig.RENDER_CONFIG[renderPos]
+        clazz.constructors.forEach {
+            if (it.parameters.size == 1) {
+                baseRender = it.call(this@GLShowActivity)
             }
         }
+        return baseRender
     }
 
     override fun onResume() {
