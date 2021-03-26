@@ -61,8 +61,6 @@ class GeometryRender(private val context: Context): BaseRender() {
 
     override fun onDrawFrame(gl: GL10?) {
         super.onDrawFrame(gl)
-        // 使用渲染程序
-        GLES20.glUseProgram(program)
         // 使顶点属性数组有效
         GLES20.glEnableVertexAttribArray(positionHandle)
         // 为顶点属性赋值

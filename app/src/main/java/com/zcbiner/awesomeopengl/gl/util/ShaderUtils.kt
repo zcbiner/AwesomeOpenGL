@@ -116,6 +116,8 @@ object ShaderUtils {
                 program = 0
             }
         }
+        // 使用渲染程序
+        GLES20.glUseProgram(program)
         return program
     }
 }

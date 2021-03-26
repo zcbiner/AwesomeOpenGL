@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.zcbiner.awesomeopengl.R
 import com.zcbiner.awesomeopengl.gl.render.GeometryRender
+import com.zcbiner.awesomeopengl.gl.render.ImageRender
 import kotlinx.android.synthetic.main.activity_gl_show.*
 
 class GLShowActivity : AppCompatActivity() {
@@ -13,6 +14,7 @@ class GLShowActivity : AppCompatActivity() {
         const val KEY_RENDER = "key_render"
 
         const val RENDER_GEOMETRY = "geometry"
+        const val RENDER_TEXTURE = "texture"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +42,9 @@ class GLShowActivity : AppCompatActivity() {
         when(renderKey) {
             RENDER_GEOMETRY -> {
                 glView.setRenderer(GeometryRender(this@GLShowActivity))
+            }
+            RENDER_TEXTURE -> {
+                glView.setRenderer(ImageRender(this@GLShowActivity))
             }
         }
     }

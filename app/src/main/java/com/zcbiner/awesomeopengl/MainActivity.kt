@@ -68,6 +68,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             0 -> {
                 renderKey = GLShowActivity.RENDER_GEOMETRY
             }
+            1 -> {
+                renderKey = GLShowActivity.RENDER_TEXTURE
+            }
         }
         if (renderKey.isNullOrEmpty()) {
             return
