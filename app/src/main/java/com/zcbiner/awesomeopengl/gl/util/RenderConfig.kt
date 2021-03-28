@@ -1,9 +1,6 @@
 package com.zcbiner.awesomeopengl.gl.util
 
-import com.zcbiner.awesomeopengl.gl.render.BaseRender
-import com.zcbiner.awesomeopengl.gl.render.TriangleRender
-import com.zcbiner.awesomeopengl.gl.render.ImageRender
-import com.zcbiner.awesomeopengl.gl.render.TransformRender
+import com.zcbiner.awesomeopengl.gl.render.*
 import kotlin.reflect.KClass
 
 /**
@@ -18,7 +15,8 @@ object RenderConfig {
     val TITLE_CONFIG: Array<String> = arrayOf(
         "简单几何图形",
         "绘制纹理",
-        "理解坐标变换",
+        "顶点着色器坐标变换",
+        "片段着色器颜色变换",
         "高斯模糊",
         "水波纹效果",
         "粒子效果",
@@ -28,6 +26,7 @@ object RenderConfig {
     val RENDER_CONFIG: Array<KClass<out BaseRender>> = arrayOf(
         TriangleRender::class,
         ImageRender::class,
-        TransformRender::class
+        TransformRender::class,
+        ColorRender::class
     )
 }
