@@ -31,9 +31,6 @@ class GLShowActivity : AppCompatActivity() {
 
     private fun initParams() {
         renderPos = intent?.getIntExtra(KEY_POS, -1) ?: -1
-    }
-
-    private fun initGLView() {
         if (renderPos < 0 || RenderConfig.RENDER_CONFIG.size <= renderPos) {
             Toast.makeText(this@GLShowActivity, "暂未实现，敬请期待！",
                 Toast.LENGTH_SHORT).show()
@@ -41,6 +38,11 @@ class GLShowActivity : AppCompatActivity() {
             finish()
             return
         }
+        // 设置标题
+        supportActionBar?.title = RenderConfig.TITLE_CONFIG[0]
+    }
+
+    private fun initGLView() {
         val render = createGLRender()
         glView.setEGLContextClientVersion(2)
         glView.setRenderer(render)
