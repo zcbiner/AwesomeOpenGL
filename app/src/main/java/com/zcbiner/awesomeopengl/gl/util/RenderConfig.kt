@@ -3,6 +3,7 @@ package com.zcbiner.awesomeopengl.gl.util
 import com.zcbiner.awesomeopengl.gl.render.BaseRender
 import com.zcbiner.awesomeopengl.gl.render.TriangleRender
 import com.zcbiner.awesomeopengl.gl.render.ImageRender
+import com.zcbiner.awesomeopengl.gl.render.TransformRender
 import kotlin.reflect.KClass
 
 /**
@@ -26,6 +27,7 @@ object RenderConfig {
 
     val RENDER_CONFIG: Array<KClass<out BaseRender>> = arrayOf(
         TriangleRender::class,
-        ImageRender::class
+        ImageRender::class,
+        TransformRender::class
     )
 }

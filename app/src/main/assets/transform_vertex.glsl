@@ -1,5 +1,5 @@
 // 学习矩阵变换
-presicion mediump float;
+precision mediump float;
 attribute vec4 a_Position;
 
 // 分别是位移、缩放、旋转
