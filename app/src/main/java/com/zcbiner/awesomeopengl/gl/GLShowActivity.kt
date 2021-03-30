@@ -26,7 +26,6 @@ class GLShowActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         initParams()
-        initGLView()
     }
 
     private fun initParams() {
@@ -40,6 +39,8 @@ class GLShowActivity : AppCompatActivity() {
         }
         // 设置标题
         supportActionBar?.title = RenderConfig.TITLE_CONFIG[0]
+
+        initGLView()
     }
 
     private fun initGLView() {
