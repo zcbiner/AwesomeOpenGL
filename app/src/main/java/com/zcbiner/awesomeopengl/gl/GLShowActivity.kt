@@ -38,7 +38,7 @@ class GLShowActivity : AppCompatActivity() {
             return
         }
         // 设置标题
-        supportActionBar?.title = RenderConfig.TITLE_CONFIG[0]
+        supportActionBar?.title = RenderConfig.TITLE_CONFIG[renderPos]
 
         initGLView()
     }
