@@ -19,7 +19,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <android.opengl.GLSurfaceView
+    <com.zcbiner.awesomeopengl.gl.GLShowSurfaceView
         android:id="@+id/glView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

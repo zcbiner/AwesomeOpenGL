@@ -3,6 +3,7 @@ package com.zcbiner.awesomeopengl.gl.render
 import android.content.Context
 import android.opengl.GLES20
 import android.opengl.GLSurfaceView
+import android.view.MotionEvent
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
 
@@ -20,5 +21,9 @@ abstract class BaseRender(protected val context: Context): GLSurfaceView.Rendere
     override fun onDrawFrame(gl: GL10?) {
         // 清除深度缓冲与颜色缓冲
         GLES20.glClear(GLES20.GL_DEPTH_BUFFER_BIT or GLES20.GL_COLOR_BUFFER_BIT)
+    }
+
+    fun onTouchEvent(event: MotionEvent): Boolean {
+        return true
     }
 }
