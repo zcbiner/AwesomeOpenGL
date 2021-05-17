@@ -18,7 +18,9 @@ object RenderConfig {
         "顶点着色器坐标变换",
         "片段着色器颜色变换",
         "绘制立方体",
+        "黑白滤镜",
         "高斯模糊",
+        "马赛克",
         "水波纹效果",
         "粒子效果",
         "3D模型效果"
@@ -29,6 +31,9 @@ object RenderConfig {
         ImageRender::class,
         TransformRender::class,
         ColorRender::class,
-        CubeRender::class
+        CubeRender::class,
+        GrayFilterRender::class,
+        GaussFilterRender::class,
+        MosaicFilterRender::class
     )
 }
