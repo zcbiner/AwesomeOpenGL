@@ -1,6 +1,6 @@
 package com.zcbiner.awesomeopengl.gl.util
 
-import com.zcbiner.awesomeopengl.gl.render.*
+import com.zcbiner.awesomeopengl.fragment.*
 import kotlin.reflect.KClass
 
 /**
@@ -18,22 +18,18 @@ object RenderConfig {
         "顶点着色器坐标变换",
         "片段着色器颜色变换",
         "绘制立方体",
-        "黑白滤镜",
-        "高斯模糊",
-        "马赛克",
+        "滤镜效果",
         "水波纹效果",
         "粒子效果",
         "3D模型效果"
     )
 
-    val RENDER_CONFIG: Array<KClass<out BaseRender>> = arrayOf(
-        TriangleRender::class,
-        ImageRender::class,
-        TransformRender::class,
-        ColorRender::class,
-        CubeRender::class,
-        GrayFilterRender::class,
-        GaussFilterRender::class,
-        MosaicFilterRender::class
+    val FRAGMENT_CONFIG: Array<KClass<out BaseGLFragment>> = arrayOf(
+        TriangleFragment::class,
+        ImageFragment::class,
+        TransformFragment::class,
+        ColorFragment::class,
+        CubeFragment::class,
+        ImageFilterFragment::class
     )
 }

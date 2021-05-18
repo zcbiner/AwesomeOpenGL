@@ -20,6 +20,10 @@ class GLShowSurfaceView: GLSurfaceView {
         }
     }
 
+    fun getRender(): BaseRender? {
+        return baseRender
+    }
+
     override fun onTouchEvent(event: MotionEvent): Boolean {
         if (baseRender?.onTouchEvent(event) == true) {
             return true

@@ -1,6 +1,5 @@
 package com.zcbiner.awesomeopengl
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.zcbiner.awesomeopengl.gl.GLShowActivity
 import com.zcbiner.awesomeopengl.gl.util.RenderConfig
 import kotlinx.android.synthetic.main.content_main.*
 
@@ -51,10 +49,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-        val intent = Intent(this@MainActivity, GLShowActivity::class.java)
         if (v.tag is Int) {
-            intent.putExtra(GLShowActivity.KEY_POS, v.tag as Int)
+            GLFragmentActivity.start(this, v.tag as Int)
         }
-        startActivity(intent)
     }
 }
