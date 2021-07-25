@@ -1,7 +1,3 @@
-//
-// Created by zhong on 2021/7/25.
-//
-
 #ifndef AWESOMEOPENGL_UTILS_H
 #define AWESOMEOPENGL_UTILS_H
 
@@ -64,6 +60,7 @@ static GLuint CreateProgram(const char *p_vertex_shader, GLuint &vertex_shader_h
 		glAttachShader(program, frag_shader_handler);
 		// 链接程序
 		glLinkProgram(program);
+		// TODO: 加入错误检测和校验。
 	}
 	return program;
 }
