@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.zcbiner.awesomeopengl.R
-import com.zcbiner.awesomeopengl.gl.render.BaseRender
 
 /**
  * 包含一个GLSurfaceView的Fragment，处理了相关的初始化逻辑。
@@ -36,7 +35,7 @@ abstract class BaseGLFragment: Fragment() {
         return R.layout.fragment_base_gl
     }
 
-    protected abstract fun provideRender(context: Context): BaseRender
+    protected abstract fun provideRender(context: Context): GLSurfaceView.Renderer
 
     protected open fun initGLView(rootView: ViewGroup) {
         glView = rootView.findViewById(R.id.glView)

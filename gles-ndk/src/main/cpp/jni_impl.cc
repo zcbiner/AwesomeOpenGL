@@ -1,5 +1,5 @@
 #include <jni.h>
-#include "render/RenderContext.h"
+#include "render_context.h"
 
 #ifdef __cplusplus
 extern "C" {

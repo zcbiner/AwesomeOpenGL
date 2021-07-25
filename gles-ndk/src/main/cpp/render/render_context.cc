@@ -1,8 +1,7 @@
 
-#include "RenderContext.h"
-#include "../content/GeometryRender.h"
+#include "render_context.h"
 
-RenderContext* RenderContext::render_context_ = nullptr;
+RenderContext* RenderContext::instance_ = nullptr;
 
 RenderContext::RenderContext() {
 
@@ -16,11 +15,8 @@ RenderContext::~RenderContext() {
 }
 
 void RenderContext::Init(int type) {
-    switch (type) {
-        case 0:
-            base_render_ = new GeometryRender();
-            break;
-    }
+    LogD("RenderContext Init type=%d", type);
+    base_render_ = glesfactory::createRender(type);
 }
 
 void RenderContext::OnSurfaceCreated() {
@@ -45,16 +41,16 @@ void RenderContext::OnDrawFrame() {
 }
 
 RenderContext * RenderContext::GetInstance() {
-    if (render_context_ == nullptr) {
-        render_context_ = new RenderContext();
+    if (instance_ == nullptr) {
+        instance_ = new RenderContext();
     }
-    return render_context_;
+    return instance_;
 }
 
 void RenderContext::DestroyInstance() {
-    if (render_context_) {
-        delete render_context_;
-        render_context_ = nullptr;
+    if (instance_) {
+        delete instance_;
+        instance_ = nullptr;
     }
 }
 

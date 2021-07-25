@@ -30,6 +30,7 @@ object RenderConfig {
         TransformFragment::class,
         ColorFragment::class,
         CubeFragment::class,
-        ImageFilterFragment::class
+        ImageFilterFragment::class,
+        NativeShowFragment::class
     )
 }

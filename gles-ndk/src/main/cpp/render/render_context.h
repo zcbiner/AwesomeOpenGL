@@ -3,12 +3,14 @@
 // 1.用于与JNI交互
 // 2.管理渲染对象
 //
-#include <GLES3/gl3.h>
-#include "stdint.h"
-#include "../content/BaseRender.h"
-
 #ifndef AWESOMEOPENGL_RENDERCONTEXT_H
 #define AWESOMEOPENGL_RENDERCONTEXT_H
+
+#include <GLES3/gl3.h>
+#include "stdint.h"
+#include "base_render.h"
+#include "render_factory.h"
+#include "../utils/logcat.h"
 
 class RenderContext {
     RenderContext();
@@ -24,7 +26,7 @@ public:
     static void DestroyInstance();
 
 private:
-    static RenderContext *render_context_;
+    static RenderContext *instance_;
     BaseRender *base_render_;
 };
 
