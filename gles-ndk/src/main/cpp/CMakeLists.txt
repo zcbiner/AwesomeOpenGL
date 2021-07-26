@@ -3,11 +3,11 @@
 # your build.
 cmake_minimum_required(VERSION 3.4.1)
 
-file(GLOB_RECURSE NATIVE_GLES_FILES
-        jni_impl.cc
-        render/*.cc
-        render/content/*.cc
-        utils/*.cc)
+#file(GLOB_RECURSE NATIVE_GLES_FILES
+#        jni_impl.cc
+#        render/*.cc
+#        render/content/*.cc
+#        utils/*.cc)
 
 # Specifies a library name, specifies whether the library is STATIC or
 # SHARED, and provides relative paths to the source code. You can
@@ -22,8 +22,11 @@ add_library(
         SHARED
 
         # Provides a relative path to your source file(s).
-        ${NATIVE_GLES_FILES}
-        )
+        render/base_render.cc
+        render/render_context.cc
+        render/content/triangle_render.cc
+        utils/utils.cc
+)
 
 # Specifies a path to native header files.
 include_directories(
