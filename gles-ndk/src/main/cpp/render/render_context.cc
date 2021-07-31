@@ -14,9 +14,9 @@ RenderContext::~RenderContext() {
     }
 }
 
-void RenderContext::Init(int type) {
+void RenderContext::Init(JNIEnv* env, jobject asset_manager, int type, jstring asset_path) {
     LogD("RenderContext Init type=%d", type);
-    base_render_ = glesfactory::createRender(type);
+    base_render_ = glesfactory::createRender(env, asset_manager, type, asset_path);
 }
 
 void RenderContext::OnSurfaceCreated() {

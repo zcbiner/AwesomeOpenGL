@@ -7,11 +7,10 @@ extern "C" {
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_zcbiner_gles_render_NativeRender_nativeInit(JNIEnv
-* env,
-jobject thiz, jint type
-) {
-    RenderContext::GetInstance()->Init(type);
+Java_com_zcbiner_gles_render_NativeRender_nativeInit(JNIEnv* env,
+jobject thiz,jobject  asset_manager,
+jint type, jstring asset_path) {
+    RenderContext::GetInstance()->Init(env, asset_manager, type, asset_path);
 }
 
 extern "C"

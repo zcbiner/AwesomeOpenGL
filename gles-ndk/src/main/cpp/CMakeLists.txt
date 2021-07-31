@@ -22,6 +22,7 @@ add_library(
         SHARED
 
         # Provides a relative path to your source file(s).
+        jni_impl.cc
         render/base_render.cc
         render/render_context.cc
         render/content/triangle_render.cc

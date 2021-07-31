@@ -17,7 +17,7 @@ class RenderContext {
     ~RenderContext();
 public:
 
-    void Init(int type);
+    void Init(JNIEnv* env, jobject  asset_manager, int type, jstring asset_path);
     void OnSurfaceCreated();
     void OnSurfaceChanged(int width, int height);
     void OnDrawFrame();

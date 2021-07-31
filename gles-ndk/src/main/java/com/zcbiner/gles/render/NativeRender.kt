@@ -1,5 +1,7 @@
 package com.zcbiner.gles.render
 
+import android.content.Context
+import android.content.res.AssetManager
 import android.opengl.GLSurfaceView
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
@@ -7,7 +9,7 @@ import javax.microedition.khronos.opengles.GL10
 /**
  * 将绘制工作交给native的OpenGL。
  */
-class NativeRender(type: Int) : GLSurfaceView.Renderer {
+class NativeRender(context: Context, type: Int) : GLSurfaceView.Renderer {
 
     companion object {
         init {
@@ -16,7 +18,7 @@ class NativeRender(type: Int) : GLSurfaceView.Renderer {
     }
 
     init {
-        nativeInit(type)
+        nativeInit(context.assets, type, "")
     }
 
     override fun onDrawFrame(gl: GL10?) {
@@ -31,7 +33,7 @@ class NativeRender(type: Int) : GLSurfaceView.Renderer {
         nativeOnSurfaceCreated()
     }
 
-    external fun nativeInit(type: Int)
+    external fun nativeInit(assetManager: AssetManager, type: Int, assetPath: String)
 
     external fun nativeOnSurfaceCreated()
 
