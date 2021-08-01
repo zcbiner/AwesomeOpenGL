@@ -8,6 +8,8 @@ TriangleRender::TriangleRender(AAssetManager* asset_manager)
 }
 
 void TriangleRender::OnSurfaceCreated() {
+	glClearColor(1.0f,1.0f,1.0f, 1.0f);
+
 	const char* p_vertex_shader_name = "triangle_vertex.glsl";
 	const char* p_frag_shader_name = "triangle_frag.glsl";
 	program_ = CreateProgram(p_vertex_shader_name, p_frag_shader_name);
@@ -19,6 +21,8 @@ void TriangleRender::OnSurfaceCreated() {
 }
 
 void TriangleRender::OnDrawFrame() {
+	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+
 	GLfloat vertices[] = {
 			0.0f,  0.5f, 0.0f,
 			-0.5f, -0.5f, 0.0f,
@@ -30,6 +34,8 @@ void TriangleRender::OnDrawFrame() {
 }
 
 void TriangleRender::OnSurfaceChanged(int width, int height) {
+	glViewport(0, 0, width, height);
+
 	this->surface_width_ = width;
 	this->surface_height_ = height;
 }

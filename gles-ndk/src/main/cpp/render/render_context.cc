@@ -20,21 +20,18 @@ void RenderContext::Init(AAssetManager* asset_manager, int type) {
 }
 
 void RenderContext::OnSurfaceCreated() {
-    glClearColor(1.0f,1.0f,1.0f, 1.0f);
     if (base_render_) {
         base_render_->OnSurfaceCreated();
     }
 }
 
 void RenderContext::OnSurfaceChanged(int width, int height) {
-    glViewport(0, 0, width, height);
     if (base_render_) {
         base_render_->OnSurfaceChanged(width, height);
     }
 }
 
 void RenderContext::OnDrawFrame() {
-    glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
     if (base_render_) {
         base_render_->OnDrawFrame();
     }

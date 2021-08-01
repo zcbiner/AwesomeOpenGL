@@ -6,8 +6,7 @@
 #ifndef AWESOMEOPENGL_RENDERCONTEXT_H
 #define AWESOMEOPENGL_RENDERCONTEXT_H
 
-#include <GLES3/gl3.h>
-#include "stdint.h"
+#include <stdint.h>
 #include "base_render.h"
 #include "render_factory.h"
 #include "../utils/logcat.h"
