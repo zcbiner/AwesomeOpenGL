@@ -3,6 +3,8 @@
 TriangleRender::TriangleRender(AAssetManager* asset_manager)
 		: BaseRender(asset_manager) {
 	LogD("[TriangleRender] init.");
+	pos_handler_ = 0;
+	color_handler_ = 0;
 }
 
 void TriangleRender::OnSurfaceCreated() {

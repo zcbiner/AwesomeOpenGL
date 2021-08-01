@@ -26,7 +26,22 @@ GLuint ShaderUtils::CreateProgram(const char *p_vertex_shader, GLuint &vertex_sh
 		glAttachShader(program, frag_shader_handler);
 		// 链接程序
 		glLinkProgram(program);
-		// TODO: 加入错误检测和校验。
+		GLint link_status = GL_FALSE;
+		glGetProgramiv(program, GL_LINK_STATUS, &link_status);
+		if (link_status == GL_FALSE) {
+			GLint buf_len = 0;
+			glGetProgramiv(program, GL_INFO_LOG_LENGTH, &buf_len);
+			if (buf_len) {
+				char* buf = (char*) malloc((size_t)buf_len);
+				if (buf) {
+					glGetProgramInfoLog(program, buf_len, nullptr, buf);
+					LogE("[CreateProgram] Could not link program:\n%s\n", buf);
+					free(buf);
+				}
+			}
+			glDeleteProgram(program);
+			program = 0;
+		}
 	}
 	return program;
 }
@@ -35,7 +50,7 @@ GLuint ShaderUtils::LoadShader(GLenum shader_type, const char *p_source) {
 	LogD("[LoadShader] shader_type=%d, source=%s", shader_type, p_source);
 	GLuint shader = glCreateShader(shader_type);
 	if (shader) {
-		glShaderSource(shader, 1, &p_source, NULL);
+		glShaderSource(shader, 1, &p_source, nullptr);
 		glCompileShader(shader);
 		GLint compiled = 0;
 		glGetShaderiv(shader, GL_COMPILE_STATUS, &compiled);
@@ -45,7 +60,7 @@ GLuint ShaderUtils::LoadShader(GLenum shader_type, const char *p_source) {
 			if (info_len) {
 				char *buff = (char *) malloc((size_t) info_len);
 				if (buff) {
-					glGetShaderInfoLog(shader, info_len, NULL, buff);
+					glGetShaderInfoLog(shader, info_len, nullptr, buff);
 					LogE("[LoadShader] compile shader error %d:\n%s\n", shader_type, buff);
 					free(buff);
 				}
