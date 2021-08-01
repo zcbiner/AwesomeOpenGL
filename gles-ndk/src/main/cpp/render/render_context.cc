@@ -37,6 +37,12 @@ void RenderContext::OnDrawFrame() {
     }
 }
 
+void RenderContext::SetBitmapData(uint32_t *bitmap_pixels) {
+    if (base_render_) {
+        
+    }
+}
+
 RenderContext * RenderContext::GetInstance() {
     if (instance_ == nullptr) {
         instance_ = new RenderContext();

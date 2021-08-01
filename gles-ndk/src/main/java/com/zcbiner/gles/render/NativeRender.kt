@@ -2,6 +2,7 @@ package com.zcbiner.gles.render
 
 import android.content.Context
 import android.content.res.AssetManager
+import android.graphics.Bitmap
 import android.opengl.GLSurfaceView
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
@@ -42,4 +43,6 @@ class NativeRender(context: Context, type: Int) : GLSurfaceView.Renderer {
     external fun nativeOnDrawFrame()
 
     external fun nativeUnInit()
+
+    external fun nativeSetBitmap(bitmap: Bitmap)
 }

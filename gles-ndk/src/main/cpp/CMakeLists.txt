@@ -26,6 +26,7 @@ add_library(
         render/base_render.cc
         render/render_context.cc
         render/content/triangle_render.cc
+        render/content/texture_render.cc
         utils/shader_utils.cc
 )
 
