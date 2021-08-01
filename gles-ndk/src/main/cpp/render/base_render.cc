@@ -1,9 +1,7 @@
 #include "base_render.h"
 
-BaseRender::BaseRender(JNIEnv* env, jobject asset_manager, jstring asset_path) {
-	this->jni_env_ = env;
+BaseRender::BaseRender(AAssetManager* asset_manager) {
 	this->asset_manager_ = asset_manager;
-	this->asset_path_ = asset_path;
 
 	program_ = 0;
 	vertex_handler_ = 0;
@@ -12,14 +10,9 @@ BaseRender::BaseRender(JNIEnv* env, jobject asset_manager, jstring asset_path) {
 	surface_height_ = 0;
 }
 
-const char* BaseRender::LoadVertexShaderFromAssets() {
-	return LoadShaderFromAssets()
-}
-
-const char* BaseRender::LoadFragShaderFromAssets() {
-
-}
-
-const char* BaseRender::LoadShaderFromAssets() {
-	return glesutils::LoadFromAssets(jni_env_, asset_manager_, asset_path_);
+GLuint BaseRender::CreateProgram(const char *p_vertex_shader_name,
+                                 const char *p_frag_shader_name) {
+	const char* p_vertex_shader = ShaderUtils::LoadShaderFromAssets(asset_manager_, p_vertex_shader_name);
+	const char* p_frag_shader = ShaderUtils::LoadShaderFromAssets(asset_manager_, p_frag_shader_name);
+	return ShaderUtils::CreateProgram(p_vertex_shader, vertex_handler_, p_frag_shader, frag_handler_);
 }

@@ -1,23 +1,20 @@
 #ifndef AWESOMEOPENGL_TRIANGLE_RENDER_H
 #define AWESOMEOPENGL_TRIANGLE_RENDER_H
 
+#include <string>
 #include "../base_render.h"
+#include "shader_utils.h"
 
 class TriangleRender : public BaseRender {
 public:
-  const int kCoordsPerVertex = 3;
-  const float kTriangleCoords[9] = {
-  		0.0f, 0.8f, 0.0f,
-  		-0.5f, 0.2f, 0.0f,
-  		0.5f, 0.2f, 0.0f
-  };
+  TriangleRender(AAssetManager* asset_manager);
 
-  TriangleRender();
   void OnSurfaceCreated();
   void OnSurfaceChanged(int width, int height);
   void OnDrawFrame();
 
 private:
+  const GLsizei kVertexCount = 3;
   GLint pos_handler_;
   GLint color_handler_;
 };

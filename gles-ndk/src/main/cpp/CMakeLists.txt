@@ -27,6 +27,7 @@ add_library(
         render/render_context.cc
         render/content/triangle_render.cc
         utils/utils.cc
+        utils/shader_utils.cc
 )
 
 # Specifies a path to native header files.

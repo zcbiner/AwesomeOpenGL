@@ -18,7 +18,7 @@ class NativeRender(context: Context, type: Int) : GLSurfaceView.Renderer {
     }
 
     init {
-        nativeInit(context.assets, type, "")
+        nativeInit(context.assets, type)
     }
 
     override fun onDrawFrame(gl: GL10?) {
@@ -33,7 +33,7 @@ class NativeRender(context: Context, type: Int) : GLSurfaceView.Renderer {
         nativeOnSurfaceCreated()
     }
 
-    external fun nativeInit(assetManager: AssetManager, type: Int, assetPath: String)
+    external fun nativeInit(assetManager: AssetManager, type: Int)
 
     external fun nativeOnSurfaceCreated()
 

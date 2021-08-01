@@ -1,28 +1,14 @@
 #include "triangle_render.h"
 
-TriangleRender::TriangleRender() {
+TriangleRender::TriangleRender(AAssetManager* asset_manager)
+		: BaseRender(asset_manager) {
 	LogD("[TriangleRender] init.");
 }
 
 void TriangleRender::OnSurfaceCreated() {
-	const char vShaderStr[] =
-			"#version 300 es                          \n"
-			"layout(location = 0) in vec4 vPosition;  \n"
-			"void main()                              \n"
-			"{                                        \n"
-			"   gl_Position = vPosition;              \n"
-			"}                                        \n";
-
-	const char fShaderStr[] =
-			"#version 300 es                              \n"
-			"precision mediump float;                     \n"
-			"out vec4 fragColor;                          \n"
-			"void main()                                  \n"
-			"{                                            \n"
-			"   fragColor = vec4 ( 1.0, 0.0, 0.0, 1.0 );  \n"
-			"}                                            \n";
-
-	program_ = glesutils::CreateProgram(vShaderStr, vertex_handler_, fShaderStr, frag_handler_);
+	const char* p_vertex_shader_name = "triangle_vertex.glsl";
+	const char* p_frag_shader_name = "triangle_frag.glsl";
+	program_ = CreateProgram(p_vertex_shader_name, p_frag_shader_name);
 	if (program_ > 0) {
 		glUseProgram(program_);
 		pos_handler_ = glGetAttribLocation(program_, "vPosition");
@@ -31,16 +17,17 @@ void TriangleRender::OnSurfaceCreated() {
 }
 
 void TriangleRender::OnDrawFrame() {
-	GLfloat vVertices[] = {
+	GLfloat vertices[] = {
 			0.0f,  0.5f, 0.0f,
 			-0.5f, -0.5f, 0.0f,
 			0.5f, -0.5f, 0.0f,
 	};
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, vVertices);
+	glVertexAttribPointer(0, kVertexCount, GL_FLOAT, GL_FALSE, 0, vertices);
 	glEnableVertexAttribArray(0);
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	glDrawArrays(GL_TRIANGLES, 0, kVertexCount);
 }
 
 void TriangleRender::OnSurfaceChanged(int width, int height) {
-
+	this->surface_width_ = width;
+	this->surface_height_ = height;
 }

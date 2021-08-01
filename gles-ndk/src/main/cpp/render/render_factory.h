@@ -6,11 +6,11 @@
 
 namespace glesfactory{
 
-static BaseRender* createRender(JNIEnv* env, jobject asset_manager, int type, jstring asset_path) {
+static BaseRender* createRender(AAssetManager* asset_manager, int type) {
 	BaseRender *baseRender = nullptr;
 	switch (type) {
 		case 0:
-			baseRender =  new TriangleRender();
+			baseRender = new TriangleRender(asset_manager);
 			break;
 		case 1:
 			break;

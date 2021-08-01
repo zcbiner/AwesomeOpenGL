@@ -40,7 +40,7 @@ abstract class BaseGLFragment: Fragment() {
     protected open fun initGLView(rootView: ViewGroup) {
         glView = rootView.findViewById(R.id.glView)
         val render = provideRender(requireContext())
-        glView.setEGLContextClientVersion(2)
+        glView.setEGLContextClientVersion(3)
         glView.setRenderer(render)
 
         // 设置GLSurfaceView的渲染模式为GLSurfaceView.RENDERMODE_CONTINUOUSLY或不设置时，系统就会主动回调onDrawFrame()方法.
