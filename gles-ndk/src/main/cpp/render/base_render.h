@@ -2,7 +2,6 @@
 #define AWESOMEOPENGL_BASE_RENDER_H
 
 #include <jni.h>
-#include "../utils/utils.h"
 #include "shader_utils.h"
 
 class BaseRender {
