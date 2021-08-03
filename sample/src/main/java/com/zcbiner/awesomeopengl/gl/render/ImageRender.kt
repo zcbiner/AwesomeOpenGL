@@ -23,7 +23,10 @@ class ImageRender(context: Context): BaseRender(context) {
     }
 
     // 纹理顶点数据
-    private val vertexData = floatArrayOf(-1f, -1f, -1f, 1f, 1f, 1f, -1f, -1f, 1f, 1f, 1f, -1f)
+    private val vertexData = floatArrayOf(-1f, -1f, -1f,
+        1f, 1f, 1f,
+        -1f, -1f, 1f,
+        1f, 1f, -1f)
     private lateinit var vertexDataBuffer : FloatBuffer
 
     // 纹理坐标

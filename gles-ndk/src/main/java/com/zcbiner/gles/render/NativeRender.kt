@@ -3,7 +3,9 @@ package com.zcbiner.gles.render
 import android.content.Context
 import android.content.res.AssetManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.opengl.GLSurfaceView
+import com.zcbiner.glsl.R
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
 
@@ -20,6 +22,9 @@ class NativeRender(context: Context, type: Int) : GLSurfaceView.Renderer {
 
     init {
         nativeInit(context.assets, type)
+        if (type == 1) {
+            nativeSetBitmap(BitmapFactory.decodeResource(context.resources, R.drawable.texture_demo))
+        }
     }
 
     override fun onDrawFrame(gl: GL10?) {

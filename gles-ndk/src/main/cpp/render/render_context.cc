@@ -1,10 +1,11 @@
 
 #include "render_context.h"
+#include "texture_render.h"
 
 RenderContext* RenderContext::instance_ = nullptr;
 
 RenderContext::RenderContext() {
-
+    LogD("[RenderContext] init");
 }
 
 RenderContext::~RenderContext() {
@@ -37,9 +38,9 @@ void RenderContext::OnDrawFrame() {
     }
 }
 
-void RenderContext::SetBitmapData(uint32_t *bitmap_pixels) {
+void RenderContext::SetBitmapData(uint32_t width, uint32_t height, void *bitmap_pixels) {
     if (base_render_) {
-        
+        base_render_->SetBitmapData(width, height, bitmap_pixels);
     }
 }
 

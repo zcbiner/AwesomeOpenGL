@@ -10,8 +10,8 @@ TriangleRender::TriangleRender(AAssetManager* asset_manager)
 void TriangleRender::OnSurfaceCreated() {
 	glClearColor(1.0f,1.0f,1.0f, 1.0f);
 
-	const char* p_vertex_shader_name = "triangle_vertex.glsl";
-	const char* p_frag_shader_name = "triangle_frag.glsl";
+	const char* p_vertex_shader_name = "triangle.vert";
+	const char* p_frag_shader_name = "triangle.frag";
 	program_ = CreateProgram(p_vertex_shader_name, p_frag_shader_name);
 	if (program_ > 0) {
 		glUseProgram(program_);

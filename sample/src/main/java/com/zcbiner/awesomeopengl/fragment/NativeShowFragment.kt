@@ -6,6 +6,6 @@ import com.zcbiner.gles.render.NativeRender
 
 class NativeShowFragment : BaseGLFragment() {
     override fun provideRender(context: Context): GLSurfaceView.Renderer {
-        return NativeRender(requireContext(), 0)
+        return NativeRender(requireContext(), 1)
     }
 }

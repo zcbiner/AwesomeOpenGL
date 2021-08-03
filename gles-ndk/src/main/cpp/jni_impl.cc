@@ -66,17 +66,19 @@ Java_com_zcbiner_gles_render_NativeRender_nativeSetBitmap(JNIEnv *env, jobject,
 	    return;
     }
     // 读取 bitmap 的像素内容到 native 内存
-    void *bitmap_pixels;
-    ret = AndroidBitmap_lockPixels(env, bitmap, &bitmap_pixels);
+    unsigned char *bitmap_pixels;
+    ret = AndroidBitmap_lockPixels(env, bitmap, reinterpret_cast<void **>(&bitmap_pixels));
     if (ret < 0) {
 	    LogE("[nativeSetBitmap] AndroidBitmap_lockPixels error");
 	    return;
     }
-    auto *src_bitmap_pixels = static_cast<uint32_t *>(bitmap_pixels);
-	uint32_t width = bitmap_info.width;
-	uint32_t height = bitmap_info.height;
-	auto *new_bitmap_pixels = new uint32_t[width * height];
-	memcpy(new_bitmap_pixels, src_bitmap_pixels, sizeof(uint32_t) * (width * height));
-	AndroidBitmap_unlockPixels(env, bitmap);
-	RenderContext::GetInstance()->SetBitmapData(new_bitmap_pixels);
+    size_t bitmap_size = bitmap_info.stride * bitmap_info.height;
+    auto *new_bitmap_pixels = (unsigned char *) malloc(bitmap_size * sizeof(unsigned char));
+    memcpy(new_bitmap_pixels, bitmap_pixels, bitmap_size);
+	ret = AndroidBitmap_unlockPixels(env, bitmap);
+    if (ret < 0) {
+        LogE("[nativeSetBitmap] AndroidBitmap_unlockPixels error");
+        return;
+    }
+	RenderContext::GetInstance()->SetBitmapData(bitmap_info.width, bitmap_info.height, new_bitmap_pixels);
 }
