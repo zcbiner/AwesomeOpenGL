@@ -11,16 +11,16 @@ class TextureRender : public BaseRender {
 
 public:
   TextureRender(AAssetManager* asset_manager);
+  ~TextureRender();
   void OnSurfaceCreated();
   void OnSurfaceChanged(int width, int height);
   void OnDrawFrame();
-  void SetBitmapData(uint32_t width, uint32_t height, void *bitmap_pixels);
+  void SetBitmapData(int width, int height, uint8_t *image_data);
 
 private:
-  uint32_t texture_width;
-  uint32_t texture_height;
-  void *texture_data;
-
+  int texture_width;
+  int texture_height;
+  uint8_t *texture_data;
 };
 
 

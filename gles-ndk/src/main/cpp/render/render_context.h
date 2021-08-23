@@ -20,7 +20,7 @@ public:
     void OnSurfaceCreated();
     void OnSurfaceChanged(int width, int height);
     void OnDrawFrame();
-    void SetBitmapData(uint32_t width, uint32_t height, void *bitmap_pixels);
+    void SetBitmapData(int width, int height, uint8_t *image_data);
 
     static RenderContext* GetInstance();
     static void DestroyInstance();

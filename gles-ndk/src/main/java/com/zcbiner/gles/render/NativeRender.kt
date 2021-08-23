@@ -22,9 +22,6 @@ class NativeRender(context: Context, type: Int) : GLSurfaceView.Renderer {
 
     init {
         nativeInit(context.assets, type)
-        if (type == 1) {
-            nativeSetBitmap(BitmapFactory.decodeResource(context.resources, R.drawable.texture_demo))
-        }
     }
 
     override fun onDrawFrame(gl: GL10?) {
@@ -39,15 +36,23 @@ class NativeRender(context: Context, type: Int) : GLSurfaceView.Renderer {
         nativeOnSurfaceCreated()
     }
 
-    external fun nativeInit(assetManager: AssetManager, type: Int)
+    fun setImageData(width: Int, height: Int, bitmapData: ByteArray) {
+        nativeSetBitmapData(width, height, bitmapData)
+    }
 
-    external fun nativeOnSurfaceCreated()
+    fun destroy() {
+        nativeUnInit()
+    }
 
-    external fun nativeOnSurfaceChanged(width: Int, height: Int)
+    private external fun nativeInit(assetManager: AssetManager, type: Int)
 
-    external fun nativeOnDrawFrame()
+    private external fun nativeOnSurfaceCreated()
 
-    external fun nativeUnInit()
+    private external fun nativeOnSurfaceChanged(width: Int, height: Int)
 
-    external fun nativeSetBitmap(bitmap: Bitmap)
+    private external fun nativeOnDrawFrame()
+
+    private external fun nativeUnInit()
+
+    private external fun nativeSetBitmapData(width: Int, height: Int, bitmapData: ByteArray)
 }

@@ -10,7 +10,7 @@ public:
   virtual void OnSurfaceCreated(){};
   virtual void OnSurfaceChanged(int width, int height){};
   virtual void OnDrawFrame(){};
-  virtual void SetBitmapData(uint32_t width, uint32_t height, void *bitmap_pixels){};
+  virtual void SetBitmapData(int width, int height, uint8_t *image_data){};
 
 protected:
   GLuint program_;

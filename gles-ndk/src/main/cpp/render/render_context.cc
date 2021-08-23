@@ -38,14 +38,15 @@ void RenderContext::OnDrawFrame() {
     }
 }
 
-void RenderContext::SetBitmapData(uint32_t width, uint32_t height, void *bitmap_pixels) {
+void RenderContext::SetBitmapData(int width, int height, uint8_t *image_data) {
     if (base_render_) {
-        base_render_->SetBitmapData(width, height, bitmap_pixels);
+        base_render_->SetBitmapData(width, height, image_data);
     }
 }
 
 RenderContext * RenderContext::GetInstance() {
     if (instance_ == nullptr) {
+        LogD("[GetInstance] new RenderContext()");
         instance_ = new RenderContext();
     }
     return instance_;
@@ -53,6 +54,7 @@ RenderContext * RenderContext::GetInstance() {
 
 void RenderContext::DestroyInstance() {
     if (instance_) {
+        LogD("[DestroyInstance] instance_ = nullptr");
         delete instance_;
         instance_ = nullptr;
     }
