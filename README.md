@@ -1,2 +1,16 @@
-# AwesomeOpenGL
-学习OpenGL，并在Android上实现炫酷的效果。
+## AwesomeOpenGL
+> 学习OpenGL，并在Android上实现炫酷的效果。
+
+目前已实现效果：
+
+- 绘制三角形
+- 绘制纹理
+
+待实现效果：
+
+- 矩阵变换
+- 光照效果
+- 绘制字体
+- 拍照
+- 粒子效果
+- 播放视频
