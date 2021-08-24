@@ -12,7 +12,7 @@ import javax.microedition.khronos.opengles.GL10
 /**
  * 将绘制工作交给native的OpenGL。
  */
-class NativeRender(context: Context, type: Int) : GLSurfaceView.Renderer {
+class NativeRender(context: Context, renderType: RenderType) : GLSurfaceView.Renderer {
 
     companion object {
         init {
@@ -21,7 +21,7 @@ class NativeRender(context: Context, type: Int) : GLSurfaceView.Renderer {
     }
 
     init {
-        nativeInit(context.assets, type)
+        nativeInit(context.assets, renderType.ordinal)
     }
 
     override fun onDrawFrame(gl: GL10?) {

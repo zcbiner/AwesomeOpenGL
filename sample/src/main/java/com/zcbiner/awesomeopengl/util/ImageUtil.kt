@@ -23,7 +23,7 @@ object ImageUtil {
         return null
     }
 
-    fun closeQuietly(closeable: Closeable?) {
+    private fun closeQuietly(closeable: Closeable?) {
         if (closeable == null) {
             return
         }

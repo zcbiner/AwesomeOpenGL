@@ -4,10 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.zcbiner.awesomeopengl.fragment.BaseGLFragment
-import com.zcbiner.awesomeopengl.gl.util.RenderConfig
+import com.zcbiner.awesomeopengl.fragment.NativeShowFragment
+import com.zcbiner.gles.render.RenderType
 
 /**
  * 用于加载相关的BaseFragment。
@@ -36,28 +35,25 @@ class GLFragmentActivity: AppCompatActivity() {
 
     private fun initParams() {
         renderPos = intent?.getIntExtra(KEY_POS, -1) ?: -1
-        if (renderPos < 0 || RenderConfig.FRAGMENT_CONFIG.size <= renderPos) {
-            Toast.makeText(this@GLFragmentActivity, "暂未实现，敬请期待！",
-                Toast.LENGTH_SHORT).show()
-            finish()
-            return
-        }
         // 设置标题
-        supportActionBar?.title = RenderConfig.TITLE_CONFIG[renderPos]
+        supportActionBar?.title = RenderType.values()[renderPos].value
         // 初始化Fragment
         initFragment()
     }
 
     private fun initFragment() {
-        val fragmentClazz = RenderConfig.FRAGMENT_CONFIG[renderPos]
-        fragmentClazz.constructors.forEach {
-            if (it.parameters.isEmpty()) {
-                val fragment: BaseGLFragment = it.call()
-                supportFragmentManager.beginTransaction()
-                    .add(R.id.fragment_container, fragment)
-                    .commitAllowingStateLoss()
+        val nativeShowFragment = NativeShowFragment()
+        val arguments = Bundle()
+        arguments.putInt(NativeShowFragment.KEY_TYPE_INDEX, renderPos)
+        when(renderPos) {
+            1 -> {
+                arguments.putInt(NativeShowFragment.KEY_IMAGE_ID, R.drawable.texture_demo)
             }
         }
+        nativeShowFragment.arguments = arguments
+        supportFragmentManager.beginTransaction()
+            .add(R.id.fragment_container, nativeShowFragment)
+            .commitAllowingStateLoss()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.zcbiner.awesomeopengl.gl.util.RenderConfig
+import com.zcbiner.gles.render.RenderType
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -34,12 +34,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             return RvViewHolder(itemView)
         }
 
-        override fun getItemCount(): Int = RenderConfig.TITLE_CONFIG.size
+        override fun getItemCount(): Int = RenderType.values().size
 
         override fun onBindViewHolder(holder: RvViewHolder, position: Int) {
             holder.itemView.tag = position
             holder.itemView.setOnClickListener(this@MainActivity)
-            holder.tvContent.text = RenderConfig.TITLE_CONFIG[position]
+            holder.tvContent.text = RenderType.values()[position].value
         }
 
     }
