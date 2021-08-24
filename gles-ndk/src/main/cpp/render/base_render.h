@@ -8,7 +8,7 @@ class BaseRender {
 public:
   BaseRender(AAssetManager* asset_manager);
   virtual void OnSurfaceCreated(){};
-  virtual void OnSurfaceChanged(int width, int height){};
+  virtual void OnSurfaceChanged(int width, int height);
   virtual void OnDrawFrame(){};
   virtual void SetBitmapData(int width, int height, uint8_t *image_data){};
 

@@ -16,3 +16,8 @@ GLuint BaseRender::CreateProgram(const char *p_vertex_shader_name,
 	const char* p_frag_shader = ShaderUtils::LoadShaderFromAssets(asset_manager_, p_frag_shader_name);
 	return ShaderUtils::CreateProgram(p_vertex_shader, vertex_handler_, p_frag_shader, frag_handler_);
 }
+
+void BaseRender::OnSurfaceChanged(int width, int height) {
+	this->surface_width_ = width;
+	this->surface_height_ = height;
+}

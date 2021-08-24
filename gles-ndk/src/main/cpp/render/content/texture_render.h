@@ -20,7 +20,9 @@ public:
 private:
   int texture_width;
   int texture_height;
-  uint8_t *texture_data;
+  uint8_t *texture_data_;
+  GLuint texture_id_;
+  GLint sample_Loc_;
 };
 
 
